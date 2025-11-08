@@ -1,0 +1,17 @@
+.homePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+
+  h2 {
+    font-size: 2rem;
+    color: #333;
+  }
+
+  .formsContainer {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+}

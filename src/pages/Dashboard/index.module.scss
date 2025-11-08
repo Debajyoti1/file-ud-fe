@@ -1,0 +1,25 @@
+.dashboardPage {
+  padding: 2rem;
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+      font-size: 1rem;
+      color: #555;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}

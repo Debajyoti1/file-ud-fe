@@ -1,0 +1,36 @@
+.notFoundPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  text-align: center;
+  padding: 2rem;
+
+  h1 {
+    font-size: 4rem;
+    color: #e74c3c;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+
+  .homeBtn {
+    padding: 0.75rem 1.5rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #2980b9;
+    }
+  }
+}
