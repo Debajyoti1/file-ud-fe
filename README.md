@@ -11,7 +11,7 @@ This project is a **React application built with Vite**.
    - Open `.env` and set the correct backend URL, for example:
 
    ```env
-   VITE_BACKEND_URL=http://your-backend-url
+   VITE_API_URL=http://your-backend-url
 
 2. **Install Dependencies**
 
