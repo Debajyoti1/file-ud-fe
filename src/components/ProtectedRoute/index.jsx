@@ -7,7 +7,6 @@ export default function ProtectedRoute({ children }) {
   const location = useLocation();
 
   if (!user) {
-    // Redirect to home page, preserve original path for later if needed
     return <Navigate to="/" state={{ from: location }} replace />;
   }
 

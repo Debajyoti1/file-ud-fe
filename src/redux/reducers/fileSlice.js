@@ -17,7 +17,7 @@ export const deleteFile = createAsyncThunk(
   "files/deleteFile",
   async (id, { rejectWithValue }) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      // await new Promise((resolve) => setTimeout(resolve, 3000));
       const res = await axiosClient.delete(`/files/${id}`);
       return res.data;
     } catch (err) {

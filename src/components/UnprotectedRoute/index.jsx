@@ -6,7 +6,6 @@ export default function UnprotectedRoute({ children }) {
   const user = useSelector((state) => state.auth.user);
   console.log("uproute",user);
   if (user) {
-    // If user is already logged in, redirect to dashboard
     return <Navigate to="/dashboard" replace />;
   }
 

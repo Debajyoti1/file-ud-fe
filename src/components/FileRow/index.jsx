@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteFile,
@@ -7,11 +7,10 @@ import {
 import { toast } from "react-toastify";
 import styles from "./index.module.scss";
 
-export default function FileRow({ file }) {
+const FileRow = memo(function FileRow({ file }) {
   const dispatch = useDispatch();
   const { fileOperation } = useSelector((state) => state.files);
 
-  // single handler for all actions
   const handleAction = async (e) => {
     const button = e.target.closest("[data-action]");
     if (!button) return;
@@ -98,4 +97,6 @@ export default function FileRow({ file }) {
       </div>
     </li>
   );
-}
+});
+
+export default FileRow;

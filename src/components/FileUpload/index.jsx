@@ -87,7 +87,6 @@ export default function FileUpload() {
         )}
       </div>
 
-      {/* hidden input */}
       <input
         type="file"
         ref={fileInputRef}

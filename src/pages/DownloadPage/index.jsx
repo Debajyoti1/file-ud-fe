@@ -20,7 +20,7 @@ export default function DownloadPage() {
 
 
   const handleDownload = () => {
-    const fileUrl = fileOperation?.file?.downloadUrl;
+    const fileUrl = `${window.location.origin}/download/${id}`;
     if (fileUrl) window.open(fileUrl, "_blank");
   };
 
@@ -76,10 +76,11 @@ export default function DownloadPage() {
                 </span>
               </p>
             </div>
-
-            <button className={styles.downloadBtn} onClick={handleDownload}>
+            <a href={`${import.meta.env.VITE_API_URL}/files/${fileOperation.file.id}/download`}>
+            <button className={styles.downloadBtn}>
               Download
             </button>
+            </a>
           </div>
         )}
       </div>

@@ -45,7 +45,7 @@ export const logoutUser = createAsyncThunk(
   'auth/logoutUser',
   async (_, { rejectWithValue }) => {
     try {
-      await axiosClient.post('/auth/logout'); // server clears cookies
+      await axiosClient.post('/auth/logout');
       return true;
     } catch (err) {
       return rejectWithValue(err.response?.data || err.message);
@@ -57,7 +57,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     user: null,
-    status: 'idle', // 'idle' | 'loading' | 'failed'
+    status: 'idle',
     error: null,
   },
   reducers: {},
