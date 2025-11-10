@@ -13,6 +13,7 @@ export default function FileList() {
   const [page, setPage] = useState(1);
   const [initialLoading, setInitialLoading] = useState(true);
   const observer = useRef();
+  
 
   useEffect(() => {
     const fetch = async () => {
@@ -54,6 +55,8 @@ export default function FileList() {
   if (!files.length) {
     return <p className={styles.noFiles}>No files uploaded yet.</p>;
   }
+
+  console.log(files)
 
   return (
     <div className={styles.fileList}>

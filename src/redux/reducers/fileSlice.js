@@ -122,6 +122,7 @@ const fileSlice = createSlice({
       })
       .addCase(uploadFile.fulfilled, (state, action) => {
         state.fileUploadOperation.status = "idle";
+        console.log(action.payload)
         state.files.unshift(action.payload);
         state.fileUploadOperation.uploadProgress = 100;
       })

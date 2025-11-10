@@ -76,7 +76,7 @@ export default function DownloadPage() {
                 </span>
               </p>
             </div>
-            <a href={`${import.meta.env.VITE_API_URL}/files/${fileOperation.file.id}/download`}>
+            <a style={{margin: "0 auto"}} href={`${import.meta.env.VITE_API_URL}/files/${fileOperation.file.id}/download`}>
             <button className={styles.downloadBtn}>
               Download
             </button>

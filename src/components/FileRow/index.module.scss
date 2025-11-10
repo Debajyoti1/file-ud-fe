@@ -96,3 +96,19 @@
     }
   }
 }
+
+@media screen and (max-width: 450px) {
+  .fileRow {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-items: start;
+    .fileActions{
+      flex-wrap: wrap;
+      & button{
+        flex-basis: 47%;
+      }
+    }
+  }
+  
+}
