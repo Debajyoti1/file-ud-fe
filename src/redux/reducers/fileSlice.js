@@ -46,7 +46,6 @@ export const fetchFiles = createAsyncThunk(
       const res = await axiosClient.get(
         "/files?page=" + page + "&limit=" + limit
       );
-      console.log(res.data.files);
       return res.data;
     } catch (err) {
       return rejectWithValue(err.response?.data || err.message);
@@ -62,7 +61,6 @@ export const uploadFile = createAsyncThunk(
         headers: { "Content-Type": "multipart/form-data" },
         onUploadProgress, // Pass progress handler
       });
-      console.log(res.data);
 
       return res.data.file; // backend returns uploaded file metadata
     } catch (err) {
@@ -122,7 +120,6 @@ const fileSlice = createSlice({
       })
       .addCase(uploadFile.fulfilled, (state, action) => {
         state.fileUploadOperation.status = "idle";
-        console.log(action.payload)
         state.files.unshift(action.payload);
         state.fileUploadOperation.uploadProgress = 100;
       })

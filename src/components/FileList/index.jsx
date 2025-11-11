@@ -56,8 +56,6 @@ export default function FileList() {
     return <p className={styles.noFiles}>No files uploaded yet.</p>;
   }
 
-  console.log(files)
-
   return (
     <div className={styles.fileList}>
       <h3>Your Files</h3>
