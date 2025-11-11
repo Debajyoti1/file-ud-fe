@@ -1,16 +1,19 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
-import HomePage from "../pages/HomePage";
-import Dashboard from "../pages/Dashboard";
-import DownloadPage from "../pages/DownloadPage";
-import NotFound from "../pages/NotFound";
 import ProtectedRoute from "../components/ProtectedRoute";
 import UnprotectedRoute from "../components/UnprotectedRoute";
+import FullScreenLoader from "../components/FullScreenLoader";
+
+const HomePage = lazy(() => import("../pages/HomePage"));
+const Dashboard = lazy(() => import("../pages/Dashboard"));
+const DownloadPage = lazy(() => import("../pages/DownloadPage"));
+const NotFound = lazy(() => import("../pages/NotFound"));
+
 
 const router = createBrowserRouter([
   {
-    element: <MainLayout />, // Layout route
+    element: <MainLayout />,
     children: [
       {
         path: "/",
@@ -41,5 +44,9 @@ const router = createBrowserRouter([
 ]);
 
 export default function AppRoutes() {
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<FullScreenLoader />}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }

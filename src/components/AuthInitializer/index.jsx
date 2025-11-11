@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../redux/reducers/authSlice";
 import { ClipLoader } from "react-spinners";
+import FullScreenLoader from "../FullScreenLoader";
 
 export default function AuthInitializer({ children }) {
   const dispatch = useDispatch();
@@ -17,16 +18,7 @@ export default function AuthInitializer({ children }) {
 
   if (initialLoading || status === "loading") {
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <ClipLoader color="#007bff" size={60} />
-      </div>
+      <FullScreenLoader />
     );
   }
 

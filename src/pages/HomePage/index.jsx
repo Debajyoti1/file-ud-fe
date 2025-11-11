@@ -9,6 +9,7 @@ export default function HomePage() {
       <h2>Welcome to File UD</h2>
       <div className={styles.formsContainer}>
         <LoginForm />
+        <hr />
         <SignupForm />
       </div>
     </div>
