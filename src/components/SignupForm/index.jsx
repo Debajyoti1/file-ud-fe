@@ -14,7 +14,7 @@ export default function SignupForm() {
     e.preventDefault();
     try {
       await dispatch(signupUser(signupData)).unwrap();
-      toast.success('Signup successful! You can now login.');
+      toast.success('Signup successful! Logging in.');
     } catch (err) {
       toast.error(err.message || 'Signup failed');
     }
