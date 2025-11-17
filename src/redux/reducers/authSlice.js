@@ -1,12 +1,12 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axiosClient from '../../configuration/axiosClient';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axiosClient from "../../configuration/axiosClient";
 
 // Fetch current user info from backend (cookies sent automatically)
 export const fetchUser = createAsyncThunk(
-  'auth/fetchUser',
+  "auth/fetchUser",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axiosClient.get('/auth/me');
+      const res = await axiosClient.get("/auth/me");
       return res.data.user;
     } catch (err) {
       return rejectWithValue(err.response?.data || err.message);
@@ -16,10 +16,10 @@ export const fetchUser = createAsyncThunk(
 
 // Login handled via backend cookies
 export const loginUser = createAsyncThunk(
-  'auth/loginUser',
+  "auth/loginUser",
   async (payload, { rejectWithValue }) => {
     try {
-      const res = await axiosClient.post('/auth/login', payload);
+      const res = await axiosClient.post("/auth/login", payload);
       return res.data.user;
     } catch (err) {
       return rejectWithValue(err.response?.data || err.message);
@@ -29,10 +29,10 @@ export const loginUser = createAsyncThunk(
 
 // Signup handled via backend cookies
 export const signupUser = createAsyncThunk(
-  'auth/signupUser',
+  "auth/signupUser",
   async (payload, { rejectWithValue }) => {
     try {
-      const res = await axiosClient.post('/auth/register', payload);
+      const res = await axiosClient.post("/auth/register", payload);
       return res.data.user;
     } catch (err) {
       return rejectWithValue(err.response?.data || err.message);
@@ -42,10 +42,10 @@ export const signupUser = createAsyncThunk(
 
 // Logout handled via backend for cookie clearing
 export const logoutUser = createAsyncThunk(
-  'auth/logoutUser',
+  "auth/logoutUser",
   async (_, { rejectWithValue }) => {
     try {
-      await axiosClient.post('/auth/logout');
+      await axiosClient.post("/auth/logout");
       return true;
     } catch (err) {
       return rejectWithValue(err.response?.data || err.message);
@@ -53,69 +53,68 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
+const initialState = {
+  user: null,
+  status: "idle",
+  error: null,
+};
+
 const authSlice = createSlice({
-  name: 'auth',
-  initialState: {
-    user: null,
-    status: 'idle',
-    error: null,
-  },
+  name: "auth",
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       // fetchUser
       .addCase(fetchUser.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.status = 'idle';
+        state.status = "idle";
       })
       .addCase(fetchUser.rejected, (state, action) => {
         state.user = null;
-        state.status = 'failed';
+        state.status = "failed";
         state.error = action.payload;
       })
 
       // loginUser
       .addCase(loginUser.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.status = 'idle';
+        state.status = "idle";
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.user = null;
-        state.status = 'failed';
+        state.status = "failed";
         state.error = action.payload;
       })
 
       // signupUser
       .addCase(signupUser.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(signupUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.status = 'idle';
+        state.status = "idle";
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.user = null;
-        state.status = 'failed';
+        state.status = "failed";
         state.error = action.payload;
       })
 
       .addCase(logoutUser.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
-      .addCase(logoutUser.fulfilled, (state) => {
-        state.user = null;
-        state.status = 'idle';
-      })
+      .addCase(logoutUser.fulfilled, () => initialState)
       .addCase(logoutUser.rejected, (state, action) => {
         state.error = action.payload;
         state.user = null;
-        state.status = 'failed';
+        state.status = "failed";
       });
   },
 });

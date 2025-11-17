@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosClient from "../../configuration/axiosClient";
+import { logoutUser } from "./authSlice";
 
 export const fetchFileInfo = createAsyncThunk(
   "files/fetchFileInfo",
@@ -68,26 +69,26 @@ export const uploadFile = createAsyncThunk(
     }
   }
 );
-
+const initialState = {
+  files: [],
+  status: "idle",
+  hasMore: true,
+  error: null,
+  fileOperation: {
+    status: "idle",
+    error: null,
+    file: null,
+  },
+  fileUploadOperation: {
+    status: "idle",
+    error: null,
+    file: null,
+    uploadProgress: 0,
+  },
+};
 const fileSlice = createSlice({
   name: "files",
-  initialState: {
-    files: [],
-    status: "idle",
-    hasMore: true,
-    error: null,
-    fileOperation: {
-      status: "idle",
-      error: null,
-      file: null,
-    },
-    fileUploadOperation: {
-      status: "idle",
-      error: null,
-      file: null,
-      uploadProgress: 0,
-    },
-  },
+  initialState,
   reducers: {
     setUploadProgress: (state, action) => {
       state.fileUploadOperation.uploadProgress = action.payload;
@@ -95,6 +96,7 @@ const fileSlice = createSlice({
     resetUploadProgress: (state) => {
       state.fileUploadOperation.uploadProgress = 0;
     },
+    resetState: () => initialState,
   },
   extraReducers: (builder) => {
     builder
@@ -167,7 +169,9 @@ const fileSlice = createSlice({
       .addCase(deleteFile.rejected, (state, action) => {
         state.fileOperation.status = "idle";
         state.fileOperation.error = action.payload;
-      });
+      })
+      //Clean state after logout
+      .addCase(logoutUser.fulfilled, () => initialState);
   },
 });
 
